@@ -19,3 +19,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/pizza-hun
 mongoose.set('debug', true);
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
+
+//connect to the database first then connect to the server - great practice 
+//use this from the activities mod 18
+// db.once('open', () => {
+//   app.listen(PORT, () => {
+//     console.log(`API server running on port ${PORT}!`);
+//   });
+// });
