@@ -1,6 +1,28 @@
-const $pizzaList = document.querySelector('#pizza-list');
+const $pizzaList = document.querySelector("#pizza-list");
 
-const printPizza = ({ _id, pizzaName, toppings, size, commentCount, createdBy, createdAt }) => {
+const getPizzaList = () => {
+  //get all of our pizza data
+  fetch("/api/pizzas")
+    //transform it into JSON data that we can use,
+    .then((response) => response.json())
+    // run each one through the printPizza function using the .forEach() method
+    .then((pizzaListArr) => {
+      pizzaListArr.forEach(printPizza);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const printPizza = ({
+  _id,
+  pizzaName,
+  toppings,
+  size,
+  commentCount,
+  createdBy,
+  createdAt,
+}) => {
   const pizzaCard = `
     <div class="col-12 col-lg-6 flex-row">
       <div class="card w-100 flex-column">
@@ -13,10 +35,10 @@ const printPizza = ({ _id, pizzaName, toppings, size, commentCount, createdBy, c
           <h5 class="text-dark">Toppings</h5>
           <ul>
             ${toppings
-              .map(topping => {
+              .map((topping) => {
                 return `<li>${topping}</li>`;
               })
-              .join('')}
+              .join("")}
           </ul>
           <a class="btn display-block w-100 mt-auto" href="/pizza?id=${_id}">See the discussion.</a>
         </div>
@@ -26,3 +48,6 @@ const printPizza = ({ _id, pizzaName, toppings, size, commentCount, createdBy, c
 
   $pizzaList.innerHTML += pizzaCard;
 };
+
+//call this function on load
+getPizzaList();
