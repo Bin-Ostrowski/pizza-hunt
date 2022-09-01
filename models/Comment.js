@@ -10,14 +10,30 @@ const ReplySchema = new Schema(
     },
     replyBody: {
       type: String,
+      required: true,
+      trim: true,
     },
     writtenBy: {
       type: String,
+      required: true,
+      trim: true,
     },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => dateFormat(createdAtVal),
+      //getters to transform data using utils function dateFormat
+      // get: (createdAtVal) => dateFormat(createdAtVal), - this was the original code from module that had bugs with 0
+      get: (createdAtVal) => {
+        console.log(new Date(createdAtVal).getTime());
+        return Intl.DateTimeFormat("en-us", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          // timeStyle: "long",
+        }).format(new Date(createdAtVal).getTime());
+      },
     },
   },
   {
@@ -31,14 +47,30 @@ const CommentSchema = new Schema(
   {
     writtenBy: {
       type: String,
+      required: true,
+      trim: true,
     },
     commentBody: {
       type: String,
+      required: true,
+      trim: true,
     },
     createdAt: {
       type: Date,
-      default: Date.now.apply,
-      get: (createdAtVal) => dateFormat(createdAtVal),
+      default: Date.now,
+      //getters to transform data using utils function dateFormat
+      // get: (createdAtVal) => dateFormat(createdAtVal), - this was the original code from module that had bugs with 0
+      get: (createdAtVal) => {
+        console.log(new Date(createdAtVal).getTime());
+        return Intl.DateTimeFormat("en-us", {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          // timeStyle: "long",
+        }).format(new Date(createdAtVal).getTime());
+      },
     },
     //associate replies with comments
     //replies will be nested directly in a comment's document and not referred to.
