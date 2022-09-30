@@ -12,7 +12,7 @@
   
   ## Screenshot
 
-  ![Screenshot](./src/assets/images/screenshot.PNG)
+  ![Screenshot](./public/assets/images/screenshot.PNG)
   
   ## Installation
   1. Download the repository photo-port from bin-ostrowski's GitHub. 
