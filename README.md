@@ -1,7 +1,8 @@
 # Pizza Hunt
         
   ## Description
-  Full-stack MEAN Pizza Blog for pizza lovers to share and discuss topping combos.
+  Full-stack MEAN app using RESTful API.
+  Pizza Hunt is a blog for pizza lovers to share and discuss topping combos.
           
   ## Table of Content
   - [Description](#description)
